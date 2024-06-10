@@ -10,7 +10,7 @@ export default function OAuth() {
             const provider=new GoogleAuthProvider();
             const auth=getAuth(app)
             const result=await signInWithPopup(auth,provider)
-            
+            //const {displayName,email,photoURL}=result.user
             const res=await fetch('/api/auth/google',{
                 method:'POST',
                 headers:{
@@ -22,6 +22,11 @@ export default function OAuth() {
                     photo:result.user.photoURL
                 })
             })
+            /*if(!res.ok)
+                {
+                    throw new Error('failed to authenticate with backend')
+                }
+                    */
              const data=await res.json();
              console.log(data)
              dispatch(signInSuccess(data))//wants to add this to redux tootlkit
