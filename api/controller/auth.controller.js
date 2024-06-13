@@ -62,3 +62,6 @@ const hashedPassword=bcryptjs.hashSync(generatedPassword,10)
   next(error)
 }
 }
+export const signout=(req,res)=>{
+  res.clearCookie('access_token').status(200).json('signout success')
+}
